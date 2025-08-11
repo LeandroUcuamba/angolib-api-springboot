@@ -5,7 +5,7 @@ import com.leandroucuamba.Angolib.entity.Usuario;
 import com.leandroucuamba.Angolib.repository.UsuarioRepository;
 import com.leandroucuamba.Angolib.service.exception.UsuarioJaExisteException;
 import com.leandroucuamba.Angolib.service.exception.UsuarioNaoExisteException;
-import com.leandroucuamba.Angolib.service.exception.UsuarioNaoTemPermissao;
+import com.leandroucuamba.Angolib.service.exception.UsuarioNaoTemPermissaoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +51,7 @@ public class UsuarioService {
         }
 
         if(!usuarioTemPermissao(header, email)){
-            throw new UsuarioNaoTemPermissao("O usuário não tem permissão para acessar este recurso!");
+            throw new UsuarioNaoTemPermissaoException("O usuário não tem permissão para acessar este recurso!");
         }
 
         return usuarioRetornado.get();
@@ -65,7 +65,7 @@ public class UsuarioService {
         }
 
         if(!usuarioTemPermissao(header, email)){
-            throw new UsuarioNaoTemPermissao("O usuário não tem permissão para acessar este recurso!");
+            throw new UsuarioNaoTemPermissaoException("O usuário não tem permissão para acessar este recurso!");
         }
 
         repository.delete(usuarioParaRemover.get());

@@ -1,14 +1,11 @@
 package com.leandroucuamba.Angolib.controller.exception;
 
-import com.leandroucuamba.Angolib.service.exception.LoginInvalidoException;
-import com.leandroucuamba.Angolib.service.exception.UsuarioJaExisteException;
-import com.leandroucuamba.Angolib.service.exception.UsuarioNaoExisteException;
+import com.leandroucuamba.Angolib.service.exception.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.leandroucuamba.Angolib.service.exception.EntityNotFound;
 
 import java.time.Instant;
 
@@ -46,8 +43,8 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(status).body(err);
     }
 
-    @ExceptionHandler(UsuarioNaoExisteException.class)
-    public ResponseEntity<ErrorResponse> UsuarioNaoExisteError(UsuarioNaoExisteException e, HttpServletRequest request){
+    @ExceptionHandler(UsuarioNaoTemPermissaoException.class)
+    public ResponseEntity<ErrorResponse> UsuarioNaoTemPermissaoError(UsuarioNaoTemPermissaoException e, HttpServletRequest request){
         String error = "Usuário não tem permissão";
         HttpStatus status = HttpStatus.FORBIDDEN;
         ErrorResponse err = new ErrorResponse(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
