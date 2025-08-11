@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth/usuarios")
 public class UsuarioController {
 
-    @Autowired
     private UsuarioService service;
 
+    @Autowired
     public UsuarioController(UsuarioService service) {
         this.service = service;
     }

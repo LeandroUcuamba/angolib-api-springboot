@@ -6,6 +6,7 @@ import com.leandroucuamba.Angolib.dto.UsuarioDeRegistro;
 import com.leandroucuamba.Angolib.entity.Usuario;
 import com.leandroucuamba.Angolib.service.JWTService;
 import com.leandroucuamba.Angolib.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,12 @@ public class UsuarioLoginController {
     private UsuarioService usuarioService;
 
     private JWTService jwtService;
+
+    @Autowired
+    public UsuarioLoginController(UsuarioService usuarioService, JWTService jwtService) {
+        this.usuarioService = usuarioService;
+        this.jwtService = jwtService;
+    }
 
     @PostMapping("/registro")
     public ResponseEntity<Usuario> cadastroUsuario(@RequestBody UsuarioDeRegistro usuarioDeRegistro){
