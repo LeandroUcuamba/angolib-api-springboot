@@ -13,7 +13,7 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
 
-public class filtroDeTokens extends GenericFilterBean {
+public class FiltroDeTokens extends GenericFilterBean {
     public static final int TOKEN_INDEX = 7;
 
 
